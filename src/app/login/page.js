@@ -9,7 +9,9 @@ export default function Page() {
 	useEffect(function() {
 		if (!formState) return
 
-		console.log(formState)
+		if (formState?.success !== true ) return
+
+		redirect("/")
 	}, [formState])
 
 	return (
@@ -21,14 +23,14 @@ export default function Page() {
 						Email
 						<input type="email" name="identifier" />
 					</label>
-					<span>{formState?.identifier._errors.map(error => error)}</span>
+					<span>{formState?.identifier?._errors.map(error => error)}</span>
 				</div>
 				<div>
 					<label>
 						Adgangskode
 						<input type="password" name="password" />
 					</label>
-					<span></span>
+					<span>{formState?.password?._errors.map(error => error)}</span>
 				</div>
 				<button type="submit">Log ind</button>
 			</form>

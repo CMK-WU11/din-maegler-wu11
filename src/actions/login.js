@@ -7,8 +7,8 @@ export default async function login(state, formData) {
 	const cookieStore = await cookies()
 	
 	const schema = z.object({
-		identifier: z.string().email({ message: "Ugyldig email" }),
-		password: z.string()
+		identifier: z.string().min(1, { message: "Feltet er påkrævet" }).email({ message: "Ugyldig email" }),
+		password: z.string().min(1, { message: "Feltet er påkrævet" })
 	})
 
 	const result = schema.safeParse({ identifier, password })
