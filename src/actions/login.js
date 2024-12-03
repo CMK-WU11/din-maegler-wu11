@@ -7,13 +7,13 @@ export default async function login(state, formData) {
 	const cookieStore = await cookies()
 	
 	const schema = z.object({
-		identifier: z.string().email(),
+		identifier: z.string().email({ message: "Ugyldig email" }),
 		password: z.string()
 	})
 
 	const result = schema.safeParse({ identifier, password })
 
-	if (!result.success) return { success: false }
+	if (!result.success) return result.error.format()
 
 	const response = await fetch("https://dinmaegler.onrender.com/auth/local", {
 		method: "POST",

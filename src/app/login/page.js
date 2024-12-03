@@ -9,13 +9,7 @@ export default function Page() {
 	useEffect(function() {
 		if (!formState) return
 
-		if (!formState.success) {
-			alert("FEJL!!")
-		}
-
-		if (formState.success) {
-			redirect("/")
-		}
+		console.log(formState)
 	}, [formState])
 
 	return (
@@ -27,7 +21,7 @@ export default function Page() {
 						Email
 						<input type="email" name="identifier" />
 					</label>
-					<span></span>
+					<span>{formState?.identifier._errors.map(error => error)}</span>
 				</div>
 				<div>
 					<label>
