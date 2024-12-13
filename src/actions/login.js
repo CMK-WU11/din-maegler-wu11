@@ -28,8 +28,6 @@ export default async function login(state, formData) {
 
 	const data = await response.json()
 
-	console.log(data)
-	
 	cookieStore.set("dm_token", data.jwt)
 	cookieStore.set("dm_userid", data.user.id)
 
